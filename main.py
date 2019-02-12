@@ -81,9 +81,8 @@ def main():
         dictionary_filter = checkDict(filtered)
         #Intersection Point of names
         intersect = list(set(name_filter).intersection(set(dictionary_filter)))
-        records = st.tag(intersect)
-        #print(intersect)
-        print(records)
+        #records = st.tag(intersect) #To detect names with StanfordNERTagger
+        print(intersect)
         print('=='*20)
         print('')
 main()
