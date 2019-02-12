@@ -71,6 +71,7 @@ def main():
     file_root = '/Users/kamlesh/WorkSpace/simpleSpider/public/'
     for file_name in os.listdir(file_root):
         file_path = file_root + file_name 
+        print(file_path)
         #Basic Filtered 
         filtered = basicClean(file_path)
         #Load inbuildnames
