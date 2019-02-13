@@ -1,10 +1,6 @@
 from bs4 import BeautifulSoup
 import re 
 from collections import Counter
-from nltk.tag.stanford import StanfordNERTagger
-
-#PreTrain DataSet of Standford
-st = StanfordNERTagger('stanford-ner/english.all.3class.distsim.crf.ser.gz', 'stanford-ner/stanford-ner.jar')
 
 def findTags(file_path, p_name):
     content = open(file_path, 'rb').read()
@@ -54,6 +50,5 @@ def getNames(file_name, tag, p_name):
     for people_name in soup.find_all(tag[0], {tag[1]: tag[2]}):
         people_name = people_name.text
         calc = people_name.split(' ')
-        if len(calc) < 4:
-            strng_arr.append(people_name)
+        strng_arr.append(people_name)
     return strng_arr

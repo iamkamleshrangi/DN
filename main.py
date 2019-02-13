@@ -7,6 +7,7 @@ from nltk.tag.stanford import StanfordNERTagger
 import os
 from nltk.stem import PorterStemmer
 from nltk.corpus import names
+from findTag import findTags 
 
 #PreTrain DataSet of Standford
 st = StanfordNERTagger('stanford-ner/english.all.3class.distsim.crf.ser.gz', 'stanford-ner/stanford-ner.jar')
@@ -25,7 +26,7 @@ def cleaner(raw_str):
 
 #It can clean HTML, script tag and stop words as well
 def basicClean(file_path):
-    text = open( file_path, 'r').read()
+    text = open( file_path, 'r').read() 
     text = text.replace('<br>', '\n').replace('</option>', '\n')
     text = re.sub('<\s*a[^>]*>','\n', text)
     soup = BeautifulSoup(text, 'html.parser')
@@ -82,10 +83,8 @@ def main():
         dictionary_filter = checkDict(filtered)
         #Intersection Point of names
         intersect = list(set(name_filter).intersection(set(dictionary_filter)))
-        #records = st.tag(intersect) #To detect names with StanfordNERTagger
-        return file_path, intersect
-        #print(intersect)
-        #print('=='*20)
-        #print('')
-#main()
-#print(inbuildName())
+        stng = findTags(file_path, intersect)
+        print(stng)
+        print('')
+
+main()
