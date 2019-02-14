@@ -84,7 +84,14 @@ def main():
         #Intersection Point of names
         intersect = list(set(name_filter).intersection(set(dictionary_filter)))
         stng = findTags(file_path, intersect)
+        #NExt Stage 
+        records = st.tag(stng)
+        org_arr = [other[0] for other in records if other[1] == 'ORGANIZATION']
+        print(records)
+        print('')
+        print(org_arr)
+        print('')
         print(stng)
         print('')
-
+        break
 main()
