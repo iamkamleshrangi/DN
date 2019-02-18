@@ -43,6 +43,7 @@ def getSyntax(common_tag):
     tag3 = pre_tag[1].replace('"','')
     return [tag1, tag2, tag3]
 
+#Get names 
 def getNames(file_name, tag, p_name):
     content = open(file_name, 'rb').read()
     soup = BeautifulSoup(content, 'html.parser')

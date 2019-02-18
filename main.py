@@ -10,7 +10,8 @@ from nltk.corpus import names
 from findTag import findTags 
 
 #PreTrain DataSet of Standford
-st = StanfordNERTagger('stanford-ner/english.all.3class.distsim.crf.ser.gz', 'stanford-ner/stanford-ner.jar')
+st = StanfordNERTagger('stanford-ner/english.all.3class.distsim.crf.ser.gz', 
+                       'stanford-ner/stanford-ner.jar', encoding='utf-8')
 dict_en = enchant.Dict("en_US")
 
 #Clean text for the process
@@ -83,15 +84,18 @@ def main():
         dictionary_filter = checkDict(filtered)
         #Intersection Point of names
         intersect = list(set(name_filter).intersection(set(dictionary_filter)))
-        stng = findTags(file_path, intersect)
-        #NExt Stage 
-        records = st.tag(stng)
-        org_arr = [other[0] for other in records if other[1] == 'ORGANIZATION']
-        print(records)
+        people_names_raw = findTags(file_path, intersect)
+        print(people_names_raw)
         print('')
-        print(org_arr)
+        for tagger in people_names_raw:
+            tag_name = word_tokenize(tagger)
+            records = st.tag(tag_name)
+            print(records)
+            if 'PERSON' in str(records):
+                print(tagger)
+                print('**'*20)
+        #org_arr = [other[0] for other in records if other[1] == 'ORGANIZATION']
+        #break
         print('')
-        print(stng)
-        print('')
-        break
+        print('**'*20)
 main()
