@@ -1,0 +1,11 @@
+database:
+  host: 127.0.0.1
+  port: 27017
+  dbname: 
+  password:
+  user:
+  spot_db: name
+  spot_col: names
+settings:
+  project_path: /Users/kamlesh/WorkSpace/DetectNames/lib
+  public_path: /Users/kamlesh/WorkSpace/DetectNames/lib/public/
