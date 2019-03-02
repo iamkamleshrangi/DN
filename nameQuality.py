@@ -71,15 +71,17 @@ def main():
         found_names = list(set(found_names))
         found_names.sort()
 
-        keywords = [ key.lower() for key in found_names]
+        keywords = [ key for key in found_names]
         keywords = '|'.join(keywords)
-        check_name = re.compile(keywords, re.IGNORECASE)
+        check_name = re.compile(keywords)
 
         #Collect All Possible Names
         p_name = []
         for name in possible_names:
             if check_name.search(name) and hasNumbers(name) == False:
                 p_name.append(name)
-        return p_name
 
+        print(p_name)
+        print('')
+        print('**'*20)
 main()
