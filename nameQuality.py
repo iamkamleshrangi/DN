@@ -73,6 +73,8 @@ def main():
 
         keywords = [ key for key in found_names]
         keywords = '|'.join(keywords)
+        print(keywords)
+        print('--'*20)
         check_name = re.compile(keywords)
 
         #Collect All Possible Names
