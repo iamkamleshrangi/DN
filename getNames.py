@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup, Comment
 from nltk.tag.stanford import StanfordNERTagger
 import os, re 
 from nltk.corpus import stopwords
-from nameparser.parser import HumanName
+from nltk.corpus import names
 
 #PreTrain DataSet of Standford
 nlp_model = 'stanford-ner/english.all.3class.distsim.crf.ser.gz'
@@ -63,7 +63,7 @@ def main(file_path):
     raw_string = '; '.join(possible_names)
     raw_tag = word_tokenize(raw_string)
     records = st.tag(raw_tag)
-    found_names = [ other[0] for other in records if other[1] == 'PERSON' and len(other[0]) > 2]
+    found_names = [ other[0] for other in records if other[1] == 'PERSON' and len(re.sub('\W+','',other[0])) > 2]
     found_names = list(set(found_names))
     found_names.sort()
 
@@ -76,5 +76,4 @@ def main(file_path):
     for name in possible_names:
         if check_name.search(name) and hasNumbers(name) == False:
             p_name.append(name)
-
     return p_name 
