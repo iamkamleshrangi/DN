@@ -60,10 +60,13 @@ def main(file_path):
     word_token = [ w for w in possible_names if not w.lower() in stop_words and w[0].isupper() ]
     possible_names = [ i.strip() for i in possible_names if len(i.split(' ')) < 9 ] 
         
-    raw_string = '; '.join(possible_names)
+    #raw_string = ';; '.join(possible_names)
+    possibles = [re.sub('\W+|\s+|\n+',' ', i) for i in possible_names ]
+    raw_string = '. '.join(possible_names)
     raw_tag = word_tokenize(raw_string)
     records = st.tag(raw_tag)
-    found_names = [ other[0] for other in records if other[1] == 'PERSON' and len(re.sub('\W+','',other[0])) > 2]
+    #print(records)
+    found_names = [ other[0] for other in records if other[1] == 'PERSON'  and len(re.sub('\W+','',other[0])) > 2]
     found_names = list(set(found_names))
     found_names.sort()
 
@@ -76,4 +79,4 @@ def main(file_path):
     for name in possible_names:
         if check_name.search(name) and hasNumbers(name) == False:
             p_name.append(name)
-    return p_name 
+    return p_name
