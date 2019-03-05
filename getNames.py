@@ -61,7 +61,7 @@ def main(file_path):
     possible_names = [ i.strip() for i in possible_names if len(i.split(' ')) < 9 ] 
         
     #raw_string = ';; '.join(possible_names)
-    possibles = [re.sub('\W+|\s+|\n+',' ', i) for i in possible_names ]
+    #possibles = [ re.sub('\W+|\s+|\n+',' ', i) for i in possible_names ]
     raw_string = '. '.join(possible_names)
     raw_tag = word_tokenize(raw_string)
     records = st.tag(raw_tag)
